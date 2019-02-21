@@ -127,6 +127,7 @@ class TransactionWatcher {
         if (!transactions.records || !transactions.records.length) {
           this.trackLiveStream()
         } else {
+          console.log('catchup queue ##################')
           this.enqueue(transactions.records)
           setImmediate(() => this.trackTransactions())
         }
@@ -147,7 +148,10 @@ class TransactionWatcher {
       .order('asc')
       .cursor('now')
       .stream({
-        onmessage: (rawTx) => this.enqueue([rawTx])
+        onmessage: (rawTx) => {
+          console.log('stream queue ##################')
+          this.enqueue([rawTx]
+          })
       })
   }
 
