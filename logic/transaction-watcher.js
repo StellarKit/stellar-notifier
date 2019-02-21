@@ -70,10 +70,6 @@ class TransactionWatcher {
       }
     }
 
-    if (notifications && notifications.length) {
-      console.log(tx)
-    }
-
     this.observer.notifier.createNotifications(notifications)
       .then(notifications => {
         storage.updateLastIngestedTx(tx.details.paging_token)
