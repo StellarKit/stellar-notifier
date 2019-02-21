@@ -116,6 +116,8 @@ class TransactionWatcher {
     if (!this.observer.observing) return // redundant check
     if (!this.cursor || this.cursor === '0') return this.trackLiveStream()
 
+    console.log(this.cursor, '$$$$$$$$$$$$$$$$$$$$$$$$')
+
     //check previously set cursor
     horizon
       .transactions()
