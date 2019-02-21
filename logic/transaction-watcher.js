@@ -104,8 +104,6 @@ class TransactionWatcher {
     if (this.releaseStream) return
     storage.getLastIngestedTx()
       .then(cursor => {
-        console.log(cursor, 'watch #######################')
-
         this.trackTransactions(cursor)
       })
   }
@@ -116,8 +114,6 @@ class TransactionWatcher {
   trackTransactions(cursor = null) {
     if (!this.observer.observing) return // redundant check
     if (!cursor || cursor === '0') return this.trackLiveStream()
-
-    console.log(cursor, '$$$$$$$$$$$$$$$$$$$$$$$$')
 
     //check previously set cursor
     horizon
@@ -130,7 +126,6 @@ class TransactionWatcher {
         if (!transactions.records || !transactions.records.length) {
           this.trackLiveStream()
         } else {
-          console.log('catchup queue ##################')
           this.enqueue(transactions.records)
           setImmediate(() => this.trackTransactions())
         }
@@ -152,7 +147,6 @@ class TransactionWatcher {
       .cursor('now')
       .stream({
         onmessage: (rawTx) => {
-          console.log('stream queue ##################')
           this.enqueue([rawTx])
         }
       })

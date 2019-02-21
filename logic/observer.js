@@ -9,7 +9,6 @@ const errors = require('../util/errors'),
  */
 class Observer {
   constructor() {
-    console.log('new observer')
     this.notifier = new Notifier(this)
     this.transactionWatcher = new TransactionWatcher(this)
     this.observing = false
