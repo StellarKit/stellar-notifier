@@ -24,8 +24,6 @@ class TransactionWatcher {
   enqueue(transactions) {
     if (!transactions || !transactions.length) return
 
-    console.log('enqueue', transactions)
-
     Array.prototype.push.apply(this.queue, transactions)
     this.processQueue()
   }
@@ -72,7 +70,9 @@ class TransactionWatcher {
       }
     }
 
-    console.log(notifications)
+    if (notifications && notifications.length) {
+      console.log(notifications.subscriptions)
+    }
 
     this.observer.notifier.createNotifications(notifications)
       .then(notifications => {
