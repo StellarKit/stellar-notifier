@@ -104,27 +104,25 @@ class TransactionWatcher {
     if (this.releaseStream) return
     storage.getLastIngestedTx()
       .then(cursor => {
-        this.cursor = cursor
-
         console.log(cursor, 'watch #######################')
 
-        this.trackTransactions()
+        this.trackTransactions(cursor)
       })
   }
 
   /**
    * Fast-forward transaction tracking from the last known tx
    */
-  trackTransactions() {
+  trackTransactions(cursor = null) {
     if (!this.observer.observing) return // redundant check
-    if (!this.cursor || this.cursor === '0') return this.trackLiveStream()
+    if (!cursor || cursor === '0') return this.trackLiveStream()
 
-    console.log(this.cursor, '$$$$$$$$$$$$$$$$$$$$$$$$')
+    console.log(cursor, '$$$$$$$$$$$$$$$$$$$$$$$$')
 
     //check previously set cursor
     horizon
       .transactions()
-      .cursor(this.cursor)
+      .cursor(cursor)
       .order('asc')
       .limit(200)
       .call()
