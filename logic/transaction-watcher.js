@@ -150,8 +150,8 @@ class TransactionWatcher {
       .stream({
         onmessage: (rawTx) => {
           console.log('stream queue ##################')
-          this.enqueue([rawTx]
-          })
+          this.enqueue([rawTx])
+        }
       })
   }
 
