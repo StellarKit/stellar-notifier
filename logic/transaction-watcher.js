@@ -71,9 +71,7 @@ class TransactionWatcher {
     }
 
     if (notifications && notifications.length) {
-      console.log(notifications.map(x => {
-        return x.subscriptions
-      }))
+      console.log(tx)
     }
 
     this.observer.notifier.createNotifications(notifications)
