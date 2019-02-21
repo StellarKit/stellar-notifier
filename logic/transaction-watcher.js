@@ -105,6 +105,9 @@ class TransactionWatcher {
     storage.getLastIngestedTx()
       .then(cursor => {
         this.cursor = cursor
+
+        console.log(cursor, 'watch #######################')
+
         this.trackTransactions()
       })
   }
